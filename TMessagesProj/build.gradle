@@ -95,16 +95,16 @@ android {
     buildTypes {
         debug {
             buildConfigField("long", "VERSION_CODE", "${APP_VERSION_CODE}")
-            buildConfigField("String","VERSION_NAME","\"${APP_VERSION_NAME}\"")
+            buildConfigField("String", "VERSION_NAME", "\"${APP_VERSION_NAME}\"")
             buildConfigField("long", "BUILD_VERSION", "${TG_APP_VERSION_CODE}")
-            buildConfigField("String","BUILD_VERSION_STRING","\"${TG_APP_VERSION_NAME}\"")
+            buildConfigField("String", "BUILD_VERSION_STRING", "\"${TG_APP_VERSION_NAME}\"")
         }
 
         release {
             buildConfigField("long", "VERSION_CODE", "${APP_VERSION_CODE}")
-            buildConfigField("String","VERSION_NAME","\"${APP_VERSION_NAME}\"")
+            buildConfigField("String", "VERSION_NAME", "\"${APP_VERSION_NAME}\"")
             buildConfigField("long", "BUILD_VERSION", "${TG_APP_VERSION_CODE}")
-            buildConfigField("String","BUILD_VERSION_STRING","\"${TG_APP_VERSION_NAME}\"")
+            buildConfigField("String", "BUILD_VERSION_STRING", "\"${TG_APP_VERSION_NAME}\"")
         }
     }
 
