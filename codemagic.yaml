@@ -1,0 +1,21 @@
+workflows:
+  android-workflow:
+    name: Android Build
+    environment:
+      groups:
+        - keystore_credentials  # إذا كنت تحتاج توقيع APK
+      vars:
+        CM_KEYSTORE_PATH: "$CM_BUILD_DIR/keystore.jks"  # مسار ملف التوقيع (اختياري)
+    scripts:
+      - name: Set up Android SDK
+        script: |
+          sdkmanager "platforms;android-33" "build-tools;33.0.0"
+      - name: Build APK
+        script: |
+          ./gradlew assembleRelease
+    artifacts:
+      - app/build/outputs/apk/release/*.apk
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com
