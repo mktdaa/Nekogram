@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:560286746081:android:ed527302d1695f5a477ea0",
         "android_client_info": {
-          "package_name": "org.telegram.messenger.regular"
+          "package_name": "tw.nekomimi.nekogram"
         }
       },
       "oauth_client": [],
