@@ -3,10 +3,9 @@ workflows:
     name: Build Nekogram Android
     max_build_duration: 120
     environment:
-      android: true
       java: 17
       vars:
-        PACKAGE_NAME: "main.nekogram.mktdaa" # غيّره إذا مختلف
+        PACKAGE_NAME: "main.nekogram.mktdaa"  # غيّره إن كان مختلف
     scripts:
       - name: Set Android SDK location
         script: |
@@ -24,3 +23,5 @@ workflows:
         notify:
           success: true
           failure: true
+    tools:
+      android_sdk: "34"
