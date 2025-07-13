@@ -1,0 +1,26 @@
+workflows:
+  build-nekogram-android:
+    name: Build Nekogram Android
+    max_build_duration: 120
+    environment:
+      android: true
+      java: 17
+      vars:
+        PACKAGE_NAME: "main.nekogram.mktdaa" # غيّره إذا مختلف
+    scripts:
+      - name: Set Android SDK location
+        script: |
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/local.properties"
+      - name: Build release APK & AAB
+        script: |
+          ./gradlew assembleRelease bundleRelease
+    artifacts:
+      - app/build/outputs/**/*.apk
+      - app/build/outputs/**/*.aab
+    publishing:
+      email:
+        recipients:
+          - rgebhfbgt@gmail.com
+        notify:
+          success: true
+          failure: true
