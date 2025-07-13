@@ -1,7 +1,7 @@
 workflows:
   build-nekogram-android:
     name: Build Nekogram Android
-    max_build_duration: 120
+    max_build_duration: 60
     environment:
       java: 17
       vars:
@@ -10,7 +10,7 @@ workflows:
       - name: Set Android SDK location
         script: |
           echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/local.properties"
-      - name: Build release APK & AAB
+      - name: Build APK & AAB
         script: |
           ./gradlew assembleRelease bundleRelease
     artifacts:
@@ -23,5 +23,3 @@ workflows:
         notify:
           success: true
           failure: true
-    tools:
-      android_sdk: "34"
