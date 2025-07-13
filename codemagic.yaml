@@ -4,18 +4,16 @@ workflows:
     max_build_duration: 60
     environment:
       java: 17
-      vars:
-        PACKAGE_NAME: "main.nekogram.mktdaa"  # غيّره إن كان مختلف
     scripts:
-      - name: Set Android SDK location
+      - name: Set SDK location
         script: |
           echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/local.properties"
-      - name: Build APK & AAB
+      - name: Build APK & AAB from TMessagesProj
         script: |
-          ./gradlew assembleRelease bundleRelease
+          ./gradlew :TMessagesProj:assembleRelease :TMessagesProj:bundleRelease
     artifacts:
-      - app/build/outputs/**/*.apk
-      - app/build/outputs/**/*.aab
+      - TMessagesProj/build/outputs/**/*.apk
+      - TMessagesProj/build/outputs/**/*.aab
     publishing:
       email:
         recipients:
