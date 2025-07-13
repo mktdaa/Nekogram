@@ -1,6 +1,6 @@
 workflows:
   build-nekogram-android:
-    name: Build Nekogram Android
+    name: Build Nekogram Android APK
     max_build_duration: 60
     environment:
       java: 17
@@ -8,12 +8,11 @@ workflows:
       - name: Set SDK location
         script: |
           echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/local.properties"
-      - name: Build APK & AAB from TMessagesProj
+      - name: Build release APK for TMessagesProj_App
         script: |
-          ./gradlew :TMessagesProj:assembleRelease :TMessagesProj:bundleRelease
+          ./gradlew :TMessagesProj_App:assembleRelease
     artifacts:
-      - TMessagesProj/build/outputs/**/*.apk
-      - TMessagesProj/build/outputs/**/*.aab
+      - TMessagesProj_App/build/outputs/**/*.apk
     publishing:
       email:
         recipients:
