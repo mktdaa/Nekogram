@@ -5,17 +5,22 @@ workflows:
       groups:
         - keystore_credentials  # إذا كنت تحتاج توقيع APK
       vars:
-        CM_KEYSTORE_PATH: "$CM_BUILD_DIR/keystore.jks"  # مسار ملف التوقيع (اختياري)
+        JAVA_HOME: "/usr/lib/jvm/java-11-openjdk"
+        CM_KEYSTORE_PATH: "$CM_BUILD_DIR/keystore.jks"
     scripts:
       - name: Set up Android SDK
         script: |
-          sdkmanager "platforms;android-33" "build-tools;33.0.0"
+          export ANDROID_HOME="$HOME/android-sdk"
+          mkdir -p "$ANDROID_HOME"
+          cd "$ANDROID_HOME"
+          wget https://dl.google.com/android/repository/commandlinetools-latest.zip
+          unzip commandlinetools-latest.zip
+          rm commandlinetools-latest.zip
+          yes | ./cmdline-tools/bin/sdkmanager --sdk_root="$ANDROID_HOME" "platforms;android-33" "build-tools;33.0.0"
+          export PATH="$ANDROID_HOME/cmdline-tools/bin:$ANDROID_HOME/platform-tools:$PATH"
+          sdkmanager --version
       - name: Build APK
         script: |
           ./gradlew assembleRelease
     artifacts:
       - app/build/outputs/apk/release/*.apk
-    publishing:
-      email:
-        recipients:
-          - your-email@example.com
